@@ -34,8 +34,20 @@
             <ToolBarTray Grid.Row="1">
               <ToolBar>
 
-                <ComboBox Margin="5" Padding="5" SelectedIndex="0" Width="200" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{StaticResource fonts}" Style="{DynamicResource StyleComboBox}"/>
-                <ComboBox Margin="5" Padding="5" SelectedIndex="2" Width="50" SelectionChanged="ComboBox_SelectionChanged_1" ItemsSource="{StaticResource size}" Style="{DynamicResource StyleComboBox}"/>
+                <ComboBox Margin="5" 
+                          Padding="5" 
+                          SelectedIndex="0" 
+                          Width="200" 
+                          SelectionChanged="ComboBox_SelectionChanged" 
+                          ItemsSource="{StaticResource fonts}" 
+                          Style="{DynamicResource StyleComboBox}"
+                          x:Name="font"/>
+                <TextBox Margin="5" 
+                          Padding="5" 
+                          Width="50" 
+                         Text="{Binding ElementName=textBox, Path=FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Style="{DynamicResource StyleTextBox}"
+                          x:Name="size"/>
             </ToolBar>
             <ToolBar Margin="5" Padding="5">
                 <Button>
@@ -78,7 +90,7 @@
                  Margin="5" 
                  Padding="5" 
                  FontSize="{Binding ElementName=sld ,Path=Value, Mode=TwoWay}" 
-                 FontFamily="{Binding ElementName=lst,Path=Text}" 
+                 FontFamily="{Binding ElementName=font,Path=Text}" 
                  TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
                  Style="{DynamicResource StyleTextBox}"/>
     </Grid>
