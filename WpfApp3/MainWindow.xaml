@@ -15,6 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Menu Margin="5" Padding="5" Grid.Row="0" Height="Auto">
@@ -33,8 +34,16 @@
             <ToolBarTray Grid.Row="1">
               <ToolBar>
 
-                <ComboBox Margin="5" Padding="5" SelectedIndex="0" Width="200" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{StaticResource fonts}" Style="{DynamicResource StyleComboBox}"/>
-                <ComboBox Margin="5" Padding="5" SelectedIndex="2" Width="50" SelectionChanged="ComboBox_SelectionChanged_1" ItemsSource="{StaticResource size}" Style="{DynamicResource StyleComboBox}"/>
+                <ComboBox x:Name="lst"  
+                         Margin="5" 
+                         Padding="5" 
+                         SelectedIndex="0" 
+                         Width="200"
+                          ItemsSource="{StaticResource fonts}"
+                         Style="{DynamicResource StyleComboBox}">
+                    
+                </ComboBox>
+                <TextBox Margin="5" Padding="5"  Width="50" Text="{Binding ElementName=textBox, Path=FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource StyleTextBox}"/>
             </ToolBar>
             <ToolBar Margin="5" Padding="5">
                 <Button>
@@ -64,8 +73,22 @@
                 </ComboBox>
             </ToolBar>
             
-            </ToolBarTray>
-        <TextBox x:Name="textBox" Grid.Row="2" Margin="5" Padding="5" FontSize="16" FontFamily="Arial" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+        </ToolBarTray>
+        <Slider x:Name="sld" Grid.Row="2"
+                    Minimum="10"
+                    Maximum="40"
+                    Value="12"
+                    TickFrequency="1"
+                    TickPlacement="TopLeft"
+                    IsSnapToTickEnabled="True"/>
+        <TextBox x:Name="textBox" 
+                 Grid.Row="3" 
+                 Margin="5" 
+                 Padding="5" 
+                 FontSize="{Binding ElementName=sld ,Path=Value, Mode=TwoWay}" 
+                 FontFamily="{Binding ElementName=lst,Path=Text}" 
+                 TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                 Style="{DynamicResource StyleTextBox}"/>
     </Grid>
 </Window>
     
